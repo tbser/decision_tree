@@ -19,7 +19,6 @@ def classify(inputTree, featLabels, testVec):
             else:   classLabel = secondDict[key]
     return classLabel
 
-
 """使用pickle模块存储决策树"""
 # pickle序列化对象可以在磁盘上保存对象,并在需要的时候读取出来。任何对象都可以执行序列化操作
 # 在硬盘上存储决策树分类器, 使得能用创建好的决策树解决分类问题
