@@ -2,7 +2,6 @@
 # -*- coding:utf-8 -*-
 import matplotlib.pyplot as plt
 
-
 # 获取叶节点数目 以便可以确定x轴的长度
 def getNumLeafs(myTree):
     numLeafs = 0
@@ -13,7 +12,6 @@ def getNumLeafs(myTree):
             numLeafs += getNumLeafs(secondDict[key])
         else: numLeafs += 1
     return numLeafs
-
 
 # 获取树的层次 以便可以确定y轴的高度
 def getTreeDepth(myTree):
@@ -27,12 +25,10 @@ def getTreeDepth(myTree):
         if thisDepth > maxDepth: maxDepth = thisDepth
     return maxDepth
 
-
 # 定义文本框和箭头格式
 decisionNode = dict(boxstyle="sawtooth", fc="0.8")
 leafNode = dict(boxstyle="round4", fc="0.8")
 arrow_args = dict(arrowstyle="<-")
-
 
 # 该函数执行了实际的绘图功能,该函数需要一个绘图区,该区域由全局变量create_plot.ax1定义
 # 绘制带箭头的注解
@@ -40,7 +36,6 @@ def plot_node(nodeTxt, centerPt, parentPt, nodeType):
     create_plot.ax1.annotate(nodeTxt, xy=parentPt, xycoords='axes fraction', xytext=centerPt,
                              textcoords='axes fraction', va="center", ha="center",
                              bbox=nodeType, arrowprops=arrow_args)
-
 # 首先创建了一个新图形并清空绘图区,然后在绘图区上绘制两个代表不同类型的树节点,后面将用这两个节点绘制树形图
 # def create_plot():
 #     fig = plt.figure(1, facecolor='white')
@@ -99,7 +94,6 @@ def create_plot(inTree):
     plot_tree.yOff = 1.0
     plot_tree(inTree, (0.5, 1.0), '')
     plt.show()
-
 
 # 输出预先存储的树信息,避免了每次测试代码时都要从数据中创建树的麻烦
 def retrieve_tree(i):
