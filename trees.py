@@ -3,12 +3,11 @@
 from math import log
 import operator as op
 
-
 # 计算给定数据集的香农熵
 def calc_shannonEnt(dataset):
     numEntries = len(dataset)    # 计算数据集中实例的总数
     labelCounts = {}
-
+    
     # 为所有可能分类创建字典
     for eachVec in dataset:
         currentLabel = eachVec[-1]                  # key是最后一列的数值(标签)
@@ -20,9 +19,7 @@ def calc_shannonEnt(dataset):
     for key in labelCounts:
         prob = float(labelCounts[key]) / numEntries    # 用所有标签的发生频率计算类别出现的概率
         shannonEnt -= prob * log(prob, 2)              # 以2为底 求对数
-
     return shannonEnt
-
 
 # 简单鱼鉴定数据集
 def create_dataset():
@@ -32,9 +29,7 @@ def create_dataset():
                [0, 1, 'no'],
                [0, 1, 'no']]
     labels = ['no surfacing', 'flippers']
-
     return dataset, labels
-
 
 # 按照给定特征feature(featureAxis对应的特征)划分数据集dataset
 def split_dataset(dataset, featureAxis, value):   # 待划分的数据集、划分数据集的特征、特征的返回值 (database, 0, 1)
@@ -48,7 +43,6 @@ def split_dataset(dataset, featureAxis, value):   # 待划分的数据集、划�
 # [[1, 1, 'yes'], [1, 1, 'yes'], [1, 0, 'no'], [0, 1, 'no'], [0, 1, 'no']]
 # split_dataset(dataset, 0, 1)
 # [[1, 'yes'], [1, 'yes'], [0, 'no']]
-
 
 # 选择最好的数据集划分方式
 def choose_bestFeatureToSplit(dataset):
@@ -72,7 +66,6 @@ def choose_bestFeatureToSplit(dataset):
             bestInfoGain = infoGain
             bestFeature = i
     return bestFeature
-
 
 # 如果数据集已经处理了所有属性,但是类标签依然不是唯一的,此时我们需要决定如何定义该叶子节点。通常采用:
 # 多数表决 决定该叶子节点的分类
@@ -114,7 +107,4 @@ def create_tree(dataset, labels):
 # 第一个关键字no surfacing是第一个划分数据集的特征名称,该关键字的值也是另一个数据字典。
 # 第二个关键字是no surfacing特征划分的数据集,这些关键字的值是no surfacing节点的子节点。这些值可能是类标签,也可能是另一个数据字典。
 # 如果值是类标签,则该子节点是叶子节点;如果值是另一个数据字典,则子节点是一个判断节点,这种格式结构不断重复就构成了整棵树。
-
-
-
 
