@@ -83,9 +83,10 @@ def majority_vote(classList):
 def create_tree(dataset, labels):
     classList = [example[-1] for example in dataset]
     # 第一个递归终止条件: 所有类标签完全相同
-    if classList.count(classList[0]) == len(classList): return classList[0]
+    if classList.count(classList[0]) == len(classList):  return classList[0]
     # 第二个递归终止条件: 使用完了所有特征,仍然不能将数据集划分成仅包含唯一类别的分组
-    if len(dataset[0]) == 1: return majority_vote[classList]
+    if len(dataset[0]) == 1:  return majority_vote[classList]
+    
     bestFeat = choose_bestFeatureToSplit(dataset)
     bestFeatLabel = labels[bestFeat]
 
@@ -98,10 +99,10 @@ def create_tree(dataset, labels):
         myTree[bestFeatLabel][value] = create_tree(split_dataset(dataset, bestFeat, value), subLabels)
     return myTree
 
-# if __name__ == '__main__':
-#     myData, labels = create_dataset()
-#     myTree = create_tree(myData, labels)
-#     print(myTree)
+if __name__ == '__main__':
+    myData, labels = create_dataset()
+    myTree = create_tree(myData, labels)
+    print(myTree)
 
 # {'no surfacing': {0: 'no', 1: {'flippers': {0: 'no', 1: 'yes'}}}}
 # 第一个关键字no surfacing是第一个划分数据集的特征名称,该关键字的值也是另一个数据字典。
