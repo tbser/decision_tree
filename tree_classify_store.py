@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 import trees
 import tree_plotter
+import pickle
 
 """测试和存储分类器"""
 # 使用决策树的分类函数
@@ -23,13 +24,11 @@ def classify(inputTree, featLabels, testVec):
 # pickle序列化对象可以在磁盘上保存对象,并在需要的时候读取出来。任何对象都可以执行序列化操作
 # 在硬盘上存储决策树分类器, 使得能用创建好的决策树解决分类问题
 def store_tree(inputTree, filename):
-    import pickle
     fw = open(filename, 'w')
     pickle.dump(inputTree, fw)
     fw.close()
 
 def grab_tree(filename):
-    import pickle
     fr = open(filename)
     return pickle.load(fr)
 
